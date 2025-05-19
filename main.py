@@ -106,7 +106,7 @@ async def process_password(message: types.Message, state: FSMContext):
     email = data['email']
     user = db.get_user_by_email(email)
 
-    if not check_password_hash(user[2], message.text):  # Проверяем хеш пароля
+    if not user[2] == message.text:  
         await message.answer("Неверный пароль. Попробуйте еще раз.")
         return
 
